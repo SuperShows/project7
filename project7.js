@@ -14,8 +14,8 @@ function transformPoint(event) {
 function drawSquare(x, y, size, color) {
   // square drawing code here
   var newsquare = document.createElementNS(namespace, "rect")
-  newsquare.setAttribute("x", xpos)
-  newsquare.setAttribute("y", ypos)
+  newsquare.setAttribute("x", x)
+  newsquare.setAttribute("y", y)
   newsquare.setAttribute("width", size)
   newsquare.setAttribute("height", size)
   newsquare.setAttribute("fill",color);
@@ -30,8 +30,22 @@ function drawCircle(cx, cy, radius, color) {
   newcircle.setAttribute("fill", color)
   screen.appendChild(newcircle)
 }
+
+var drawing = false
 // Step 3: Event listeners
 document.addEventListener("mousedown", function(e) {
   // what do you want to do when the user presses down
   // on the mouse button?
+  drawing = true
+})
+
+document.addEventListener("mouseup", function(e) {
+  drawing = false
+})
+
+document.addEventListener("mousemove", function(e) {
+  if(drawing) {
+    var point = transformPoint(e)
+    drawCircle(point.x,point.y, 15,"red")
+  }
 })
