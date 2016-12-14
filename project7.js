@@ -74,3 +74,27 @@ document.addEventListener("mousedown", function(e) {
       }
     }
 })
+document.addEventListener("mouseup", function(e) {
+    var pt = transformPoint(e, screen)
+    shouldDraw = false
+})
+document.addEventListener("mousemove", function(e) {
+  var colorSelect = (document.getElementById("colorSelect").value)
+    var shapeSelect = (document.getElementById("shapeSelect").value)
+        var sizeSelect = (document.getElementById("sizeSelect").value)
+    var pt = transformPoint(e, screen)
+      if(shouldDraw == true){
+        if(colorSelect == "rainbow"){
+          colorSelect = 'hsl('+(rainbowColor += 1)+', 100%, 50%)';
+        }
+
+    if(shapeSelect == "square"){
+  drawRectangle(colorSelect,sizeSelect,pt.x,pt.y);
+    }else if(shapeSelect == "circle"){
+  drawCircle(colorSelect,sizeSelect,pt.x,pt.y);
+    }
+    else{
+        drawTriangle(colorSelect,pt.x,pt.y,sizeSelect);
+    }
+  }
+})
